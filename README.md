@@ -3,7 +3,7 @@ Rom-com or not rom-com is an ML.NET project designed to examine a text document 
 
 It was inspired by [Mark Kermode's Secrets of Cinema](https://www.bbc.co.uk/programmes/b0bbn5pt) excellent series on the BBC, which examines classic film genres, such as rom-coms, comedies, etc, and explores the structures, formats, film techniques and plot points that are common to each of these genres.
 
-In the project we take a somewhat less sophisticated approach to this same concept, but instead we do textual analysis on a whole bunch of movie scripts, by genre, and then use a classification machine learning algorithm to codify this, so that we can then take an arbitrary piece of text and rate it for the likelihood of it being in one of the genres we have analysed. So, with a big Hello to Jason Isaacs, lets check it out....
+In the project we take a somewhat less sophisticated approach to this same concept, but instead we do textual analysis on a whole bunch of movie scripts, by genre, and then use a classification machine learning algorithm to codify this, so that we can then take an arbitrary piece of text and rate it for the likelihood of it being in one of the genres we have analysed. So, with a big Hello to Jason Isaacs, let's see how it works....
 
 # Getting Going
 
@@ -38,7 +38,7 @@ At the command line, run this command
 - dotnet  script  .\ScriptProcessor.csx  TEXTANALYTICSKEY
 
 Depending on the scripts you have sourced, you should see something  like this:
-![screenshot](./etc/img/outputfromscripbuilder.png){: .framed .padded}
+![screenshot](./etc/img/outputfromscripbuilder.png)
 
 The  Azure Text Analytics has a limit of 5,000 characters per call, so the application breaks the scripts down into 5,000 character chunks, breaking only on white space, not mid word.
 
@@ -48,5 +48,11 @@ Label:001 for rom-com, 002 for horror, etc
 Key Phrases: The de-duped text from the Azure Text Analytics
 
 This is an example of an extract from that file:
+![screenshot](./etc/img/tsvextract.png)
 
 # Model Builder
+
+
+
+# Predict Web API
+
