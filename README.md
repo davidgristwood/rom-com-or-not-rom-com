@@ -38,6 +38,7 @@ At the command line, run this command
 - dotnet  script  .\ScriptProcessor.csx  TEXTANALYTICSKEY
 
 Depending on the scripts you have sourced, you should see something  like this:
+![screenshot](./etc/img/outputfromscripbuilder.png){: .framed .padded}
 
 The  Azure Text Analytics has a limit of 5,000 characters per call, so the application breaks the scripts down into 5,000 character chunks, breaking only on white space, not mid word.
 
