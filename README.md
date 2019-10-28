@@ -50,6 +50,4 @@ Key Phrases: The de-duped text from the Azure Text Analytics
 
 This is an example of an extract from that file:
 
-
 # Model Builder
-
