@@ -13,3 +13,4 @@ nuget.exe
 packages/
 model.zip
 *.dll
+PredictAPI/obj/Debug/netcoreapp3.0/PredictAPI.csprojAssemblyReference.cache

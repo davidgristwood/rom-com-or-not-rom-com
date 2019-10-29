@@ -35,24 +35,44 @@ Go to [Azure Text Analytics](https://azure.microsoft.com/en-gb/services/cognitiv
 
 At the command line, run this command
 
-- dotnet  script  .\ScriptProcessor.csx  TEXTANALYTICSKEY
+    dotnet  script  .\ScriptProcessor.csx  TEXTANALYTICSKEY
 
 Depending on the scripts you have sourced, you should see something  like this:
+
 ![screenshot](./etc/img/outputfromscripbuilder.png)
 
 The  Azure Text Analytics has a limit of 5,000 characters per call, so the application breaks the scripts down into 5,000 character chunks, breaking only on white space, not mid word.
 
 The output from this process is a tab separated file, data.tsv, that contains the data for the machine learning model. It has one line per analysed film, and two columns:
 
-Label:001 for rom-com, 002 for horror, etc
-Key Phrases: The de-duped text from the Azure Text Analytics
+- Label: 001 for rom-com, 002 for horror, etc
+- Key Phrases: The de-duped text from the Azure Text Analytics
 
-This is an example of an extract from that file:
+This is an example of the data file, showing some of the key words the text analytics process extracted:
+
 ![screenshot](./etc/img/tsvextract.png)
 
 # Model Builder
 
+Having created the data.tsv file, the next stage is to build a machine learning model. We use a multi-class classification model, where we get a probabiity from the model for each of the genres. This is essentially like running a binary classifier for each of the genre types we hold information on. [Sentiment analysis](https://github.com/dotnet/machinelearning-samples/tree/master/samples/csharp/getting-started/BinaryClassification_SentimentAnalysis) is a classic example of a binary classifier, where the goal is to predict if a piece of text has a positive or negative sentiment, based on supervised learning data set that has already been classified.
 
+The tutorial [Categorize support issues using multiclass classification with](https://docs.microsoft.com/en-us/dotnet/machine-learning/tutorials/github-issue-classification) takes you through the process in more detail if you want to go through this process step by step.
+
+To use the model builder, at the command line run this command
+
+	dotnet script ModelBuilder.csx  [train | load]  'some words to test'
+
+The fist time you run this command, or when the data.tsv file has been updated, you need to run the command with the "train" option, so it builds and saves the model. As this can take several minutes depending on the szie of the data, subsequent runs can use the "load" option to load the  previously saved model.
+
+Train:
+
+![screenshot](./etc/img/modelbuildertrain.png)
+
+Load:
+
+![screenshot](./etc/img/modelbuilderload.png)
+
+Notice how Model Builder also does a predictive test on a phrase you can pass in on the command line, just as a quick test to validate the model. As you can see from the above screen shots, there is a very high probabilty that this is rom-com, with a small chance it might be a horror. 
 
 # Predict Web API
 
