@@ -14,3 +14,13 @@ packages/
 model.zip
 *.dll
 PredictAPI/obj/Debug/netcoreapp3.0/PredictAPI.csprojAssemblyReference.cache
+data.tsv
+PredictAPI/bin/Debug/netcoreapp3.0/PredictAPI.pdb
+PredictAPI/obj/PredictAPI.csproj.nuget.cache
+PredictAPI/obj/PredictAPI.csproj.nuget.dgspec.json
+PredictAPI/obj/project.assets.json
+PredictAPI/obj/Debug/netcoreapp3.0/PredictAPI.assets.cache
+PredictAPI/obj/Debug/netcoreapp3.0/PredictAPI.csproj.FileListAbsolute.txt
+PredictAPI/obj/Debug/netcoreapp3.0/PredictAPI.csprojAssemblyReference.cache
+PredictAPI/obj/Debug/netcoreapp3.0/PredictAPI.pdb
+PredictAPI/obj/Debug/netcoreapp3.0/project.razor.json
