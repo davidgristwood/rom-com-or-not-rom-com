@@ -34,7 +34,7 @@ namespace PredictAPI
             // model name gets referenced later 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddPredictionEnginePool<ScriptType,ScriptTypePrediction>()
-                .FromFile(modelName: "ScriptAnalysisModel", filePath: @"..\model.zip", watchForChanges: true);
+                .FromFile(modelName: "ScriptAnalysisModel", filePath: @"model.zip", watchForChanges: true);
 
         }
 
