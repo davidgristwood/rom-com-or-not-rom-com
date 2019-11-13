@@ -47,8 +47,8 @@ public class ScriptTypePrediction
 }
 
 var ctx = new MLContext(); // Load ML.NET
-var DataPath = @".\data.tsv";//The data is expected to be local
-var ModelPath = @".\model.zip";//Saving the model locally too.
+var DataPath = @"./data.tsv";               //The data is expected to be local
+var ModelPath = @"./PredictAPI/model.zip";  //Saving the model locally too.
 
 var toggle = Args[0];
 if(toggle.ToLower() == "train"){
