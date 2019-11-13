@@ -16,6 +16,7 @@ This project is easy to get up and going, and at its core, boils down to a three
 - Use the PredictAPI .net core web app to post a body of text for analysis using the saved machine learning model
 
 You can then of course then wrap the API behind any application you want.
+This project, as of Novemeber has been updated to .net core 3.x, so please make sure you have the relevant SDKS etc installed. 
 
 # Scrip Builder 
 
