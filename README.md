@@ -18,7 +18,7 @@ This project is easy to get up and going, and at its core, boils down to a three
 You can then of course then wrap the API behind any application you want.
 This project, as of Novemeber has been updated to .net core 3.x, so please make sure you have the relevant SDKS etc installed. 
 
-# Scrip Builder 
+# Script Builder 
 
 Script Builder uses Azure Text Analytics to detect sentiment, key phrases, named entities and language from a body of text. We use this service to analyse and process a whole load of movie scripts, each off which we have to label up front by genre.
 
