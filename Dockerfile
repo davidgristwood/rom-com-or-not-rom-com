@@ -7,7 +7,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.0-alpine as build
 WORKDIR /build
 
 # Copy project source files
-COPY . ./
+COPY PredictAPI/ ./
 
 # Restore, build & publish
 RUN dotnet restore
@@ -18,7 +18,7 @@ RUN dotnet publish --no-restore --configuration Release
 # =======================================================
 
 # Base image is .NET Core runtime only (Linux)
-FROM mcr.microsoft.com/dotnet/core/aspnetdoick:3.0-alpine
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-alpine
 
 # Metadata in Label Schema format (http://label-schema.org)
 LABEL org.label-schema.name    = "RomCom or Not RomCom" \
@@ -30,6 +30,9 @@ WORKDIR /app
 
 # Copy already published binaries (from build stage image)
 COPY --from=build /build/bin/Release/netcoreapp3.0/publish/ .
+
+# Host the frontend with the API, remove if you don't want this
+COPY frontend/ ./wwwroot
 
 # IMPORTANT! Kestrel will bind to localhost by default, which is no good inside a container!
 # See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-3.0#endpoint-configuration
