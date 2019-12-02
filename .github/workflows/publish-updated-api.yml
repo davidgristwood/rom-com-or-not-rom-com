@@ -1,0 +1,39 @@
+name: Publish Updated API
+
+on:
+  push:
+    branches: master
+    paths:
+      - 'PredictAPI/**'
+      - .github/workflows/publish-updated-api.yml
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./PredictAPI
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.102'
+
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: dotnet publish
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapi
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v1
+      with:
+        app-name: ${{ env.APP_NAME }}
+        slot-name: 'production'
+        publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE }}
+        package: ${{env.DOTNET_ROOT}}/myapi
+      env:
+        APP_NAME: 'romcomnotromcom'
