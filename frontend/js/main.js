@@ -15,7 +15,8 @@ function submitScript(text) {
 }
 
 function checkGenre(text, callback) {
-    $.ajax("https://romcomnotromcom.azurewebsites.net/predict", {
+    console.log(`${API_BASE}/predict`)
+    $.ajax(`${API_BASE}/predict`, {
         data: JSON.stringify(text),
         dataType: 'json',
         contentType: 'application/json',
