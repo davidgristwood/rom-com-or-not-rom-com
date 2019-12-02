@@ -1,0 +1,28 @@
+name: Publish Updated Website
+
+on:
+  push:
+    branches: master
+    paths:
+      - 'frontend/**'
+      - .github/workflows/publish-updated-website.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: "Set Production Config"
+      run: |
+        echo "const API_BASE = \"$API_BASE\""\; > ./frontend/config.js
+      env:
+        API_BASE: https://romcomnotromcom.azurewebsites.net
+
+    - name: "Upload site"
+      run: |
+        az storage blob upload-batch --source frontend --destination \$web --account-name="${STORAGE_ACCOUNT_NAME}" --account-key="${STORAGE_ACCOUNT_KEY}" --no-progress
+      env:
+        STORAGE_ACCOUNT_NAME: ${{ secrets.STORAGE_ACCOUNT_NAME }}
+        STORAGE_ACCOUNT_KEY: ${{ secrets.STORAGE_ACCOUNT_KEY }}
