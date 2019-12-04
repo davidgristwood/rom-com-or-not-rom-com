@@ -15,7 +15,6 @@ function submitScript(text) {
 }
 
 function checkGenre(text, callback) {
-    console.log(`${API_BASE}/predict`)
     $.ajax(`${API_BASE}/predict`, {
         data: JSON.stringify(text),
         dataType: 'json',
@@ -33,6 +32,4 @@ function displayResult(data) {
         let probability = Math.ceil(item.probability * 100);
         genres.append($("<div>").addClass('bar').css('width', probability + '%').text(probability + '% ' + item.genre));
     });
-
-
 }
