@@ -88,3 +88,11 @@ The final stage is to deploy the Web API with the model to Azure. There are a va
 
 ![screenshot](./etc/img/DeploymentCentre.png)
 
+
+# and finally...
+
+Once deployed, use the front end script project, which is a simple Javascrip web interface, to enter some text, and call the API, such as this from "Dawn of the Dead":
+
+![screenshot](./etc/img/ui.png)
+
+We have provided a couple of test script extracts, which are not in the tariningtraining data, in the "test extracts" folder
