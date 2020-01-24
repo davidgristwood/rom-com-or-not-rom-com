@@ -82,7 +82,7 @@ You can test the application with programs like Postman:
 ![screenshot](./etc/img/postman.png)
 
 
-# Deployment
+# Deployment 
 
 The final stage is to deploy the Web API with the model to Azure. There are a variety of DevOps ways to do this, but one of the simplest is to use an Azure AppService, and to use its Deployment Centre to do all the heavy lifting.
 
