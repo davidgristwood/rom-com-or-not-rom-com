@@ -95,4 +95,4 @@ Once deployed, use the front end script project, which is a simple Javascrip web
 
 ![screenshot](./etc/img/ui.png)
 
-We have provided a couple of test script extracts, which are not in the tariningtraining data, in the "test extracts" folder
+We have provided a couple of test script extracts, which are not in the training data, in the "test extracts" folder
