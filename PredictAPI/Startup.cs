@@ -52,6 +52,10 @@ namespace PredictAPI
 
             app.UseAuthorization();
 
+            // BC. Added for hosting the frontend if present in wwwroot
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
