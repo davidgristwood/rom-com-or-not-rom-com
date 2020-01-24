@@ -32,19 +32,13 @@ We can't legally share or distribute film scripts, but there are many websites o
 
 There are some dummy text placeholders in this directory to start you off - simply delete them and replace them with the real film scripts.
 
-You will need an Azure subscription to perform the text analytics processing. If you don't have one, visit https://azure.microsoft.com/free/ 
-
-Go to [Azure Text Analytics](https://azure.microsoft.com/en-gb/services/cognitive-services/text-analytics/) and obtain a Text Analytics key. There is a free version with a cap of 5,000 free transactions per month, which should be more than enough to get up and going.
-
 At the command line, run this command
 
-    dotnet script .\ScriptProcessor.csx TEXTANALYTICSKEY
+    dotnet script .\ScriptProcessor.csx 
 
 Depending on the scripts you have sourced, you should see something  like this:
 
 ![screenshot](./etc/img/outputfromscripbuilder.png)
-
-The  Azure Text Analytics has a limit of 5,000 characters per call, so the application breaks the scripts down into sub 5,000 chunks, breaking only on white space, not mid-word.
 
 The output from this process is a tab separated file, data.tsv, that contains the data for the machine learning model. It has one line per analysed film, and two columns:
 
