@@ -2,14 +2,13 @@
 using Microsoft.ML;
 using Microsoft.ML.Data;
 
-//You run this script with: dotnet script ModelBuilder.csx (train|load) 'some words to test'
+//You run this script with: 
+//      dotnet script ModelBuilder.csx (train|load) 'some words to test'
 //If you use dotnet script ModelBuilder.csx train 'some words to test' 
-    // the model is trained and saved FIRST before testing
+// the model is trained and saved FIRST before testing
 //If you use dotnet script ModelBuilder.csx load 'some words to test'
     // the last trained model is loaded and then the words tested against it
 
-//Currently we are brittle to the 3 categories we have been testing on. 
-//However, to create a schema file that has the categories would be simple enough
 
 Console.WriteLine("Hello! We are going to do some ML now.");
 Console.WriteLine("I am expecting a data file of a header row with a category in column 1 and a list of words following. A TSV");
@@ -51,10 +50,12 @@ var DataPath = @"./data.tsv";               //The data is expected to be local
 var ModelPath = @"./PredictAPI/model.zip";  //Saving the model locally too.
 
 var toggle = Args[0];
-if(toggle.ToLower() == "train"){
+if (toggle.ToLower() == "train")
+{
+    // lets train
     Console.WriteLine("Training the model...");
 
-        //Pull in the data from the data file conforming it to the schema defined above.
+    //Pull in the data from the data file conforming it to the schema defined above.
     IDataView dataReader = ctx.Data.LoadFromTextFile<ScriptType>(DataPath, hasHeader:true);
 
     //We are building an estimator to do a multiclass classifier here.
@@ -63,7 +64,7 @@ if(toggle.ToLower() == "train"){
     //Then we use a SdcaMazimumEntropy multiclass classifier - need to look that one up.
     //Then we map the map the value back again to the label.
     IEstimator<ITransformer> est = ctx.Transforms.Text
-                .FeaturizeText("Features",nameof(ScriptType.Text))
+                .FeaturizeText("Features", nameof(ScriptType.Text))
                 .Append(ctx.Transforms.Conversion.MapValueToKey(outputColumnName: "KeyColumn", inputColumnName: nameof(ScriptType.Label)))
                 .Append(ctx.MulticlassClassification.Trainers.SdcaMaximumEntropy("KeyColumn","Features"))
                 //.Append(ctx.MulticlassClassification.Trainers.NaiveBayes("KeyColumn","Features")) //Produces different score landscape
@@ -73,11 +74,14 @@ if(toggle.ToLower() == "train"){
     ITransformer trainedModel = est.Fit(dataReader);
 
     
-    //We can save the model if we want to
+    //We now save the model to save us going through this training process again  
     Console.WriteLine("Saving model...");
     ctx.Model.Save(trainedModel, dataReader.Schema, ModelPath);
     Console.WriteLine(System.IO.File.Exists(ModelPath));
 }
+
+
+// lets process the text on the comamnd line and see what its like
 
 Console.WriteLine("Loading model...");
 DataViewSchema modelSchema; 
