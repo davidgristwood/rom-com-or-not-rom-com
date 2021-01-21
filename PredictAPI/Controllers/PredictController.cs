@@ -30,7 +30,6 @@ namespace PredictAPI
 
         // Predict single test data outcome
         [HttpPost]
-        //public ActionResult<string> Post([FromBody] string inputString)
         public ActionResult<string> Post([FromBody] string inputString)
         {
             string[] filmTypes = new string[]

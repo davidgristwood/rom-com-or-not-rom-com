@@ -1,0 +1,76 @@
+@using System.Net.Http
+@inject HttpClient Http
+@using System.Text.Json
+    
+
+<h1>RomCom or Not RomCom (.NET Blazor)</h1>
+
+<div id="content">
+
+    <textarea id="summary" name="summary"  @bind="ScriptInput"></textarea>
+
+    <p></p>
+    <button class="btn btn-primary" @onclick="CheckScript">Check Script</button>
+    
+    <p>@CallStatus</p>
+
+    <div id="genres">
+        @foreach (var g in GenreOutput)
+        {
+            <div 
+                class="bar" style=@($"width:{calcprob(g.probability)}%;")> @calcprob(g.probability) @g.genre
+            </div>
+        }
+    </div>
+</div>
+
+
+@code 
+{
+    public string ScriptInput { get; set; }
+    public string CallStatus { get; set; }
+    public List<GenreResults> GenreOutput = new List<GenreResults>();
+
+
+    private const string ServiceEndpoint = "https://romcomnotromcom.azurewebsites.net/predict";
+
+    // genre info from API 
+    public class GenreResults
+    {
+        public string genre  { get; set; }
+        public float probability  { get; set; }
+    }
+  
+
+
+    // call the API to run the ML model against our script
+    private async Task CheckScript()
+    {
+        // call api with input script
+
+        string item = '"' + @ScriptInput + '"';
+        HttpResponseMessage response = await Http.PostAsJsonAsync(ServiceEndpoint, item);
+        if (response.IsSuccessStatusCode == false)
+            CallStatus = "call failed";
+
+        // parse result of call
+
+        string genresString = await response.Content.ReadAsStringAsync();
+        GenreOutput = parseResponse(genresString);
+    }
+
+    
+    // this seems to need to be separate function in Blazor 
+    private List<GenreResults> parseResponse(string res)
+    {
+        GenreResults[] g = JsonSerializer.Deserialize<GenreResults[]>(res);
+        List<GenreResults> l = g.ToList();
+        return l;
+    }
+
+    private int calcprob(float f)
+    {
+        int i = (int) Math.Ceiling(f * 100.0);
+        return i;
+    }
+}
