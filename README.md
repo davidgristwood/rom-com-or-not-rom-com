@@ -7,7 +7,13 @@ It was inspired by [Mark Kermode's Secrets of Cinema](https://www.bbc.co.uk/prog
 
 ![screenshot](./etc/img/Mark_Kermodes_Secrets_of_Cinema.jpg)
 
-In the project we take a simpler, alternative AI approach to this same idea, and perform textual analysis on a load of movie scripts, by genre, and then use a machine learning algorithm to codify this, so that we can then take any arbitrary piece of text and rate it for the likelihood of it being in one of these genres. So, with a big 'Hello to Jason Isaacs', let's see how it works....
+In the project we take a simpler, alternative AI approach to this same idea, and perform textual analysis on a load of movie scripts, by genre, and then use a machine learning algorithm to codify this, so that we can then take any arbitrary piece of text and rate it for the likelihood of it being in one of these genres. 
+
+If you wish to see the offical video of Phil and I presenting a session on this project, see [An Introduction to Machine Learning with ML.NET](https://www.youtube.com/watch?v=Y5wJ8xtlupk)
+
+
+
+So, with a big 'Hello to Jason Isaacs', let's see how it works....
 
 # Getting Going
 
