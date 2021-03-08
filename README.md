@@ -11,7 +11,7 @@ In the project we take a simpler, alternative AI approach to this same idea, and
 
 If you wish to see the offical video of Phil and I presenting a session on this project, see [An Introduction to Machine Learning with ML.NET](https://www.youtube.com/watch?v=Y5wJ8xtlupk)
 
-
+![screenshot](./etc/mlvideo.png)
 
 So, with a big 'Hello to Jason Isaacs', let's see how it works....
 
